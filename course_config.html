@@ -1,0 +1,341 @@
+<style>
+#course-config-block { float: left; width: 99%; }
+#course-config-block .tabs { float: none; }
+
+#course-details label { border-top: 1px solid #def; clear: left; float: left; padding: .3em .5em 0; text-align: right; width: 10em; }
+#course-details input, #course-details textarea { float: left; margin-bottom: 3px; width: 70%; }
+#course-details select { float: left; font-size: 120%; }
+h3 { clear: left; }
+#course-details fieldset { border: 0; clear: left; display: block; padding: 1em 0 0; }
+#course-details fieldset label { clear: none; }
+#course-details #start-date, #course-details #end-date { width: 8em; }
+
+#content-block div { margin: 10px 1em; }
+
+#page-features li { clear: left; float: left; list-style-type: none; width: 100%; }
+#page-features li input { float: left; margin: .3em; }
+#page-features li label { background-color: #def; float: left; font-weight: bold; margin-bottom: .5em; width: 10em; }
+#page-features li span { border-top: 1px solid #def; float: left; font-style: italic; margin-left: .3em; width: 85%; }
+#page-features li .additional-check { border-top: 0; display: none; }
+#page-features li .additional-check input { float: none; }
+#page-features li .additional-check label { background-color: transparent; float: none; font-weight: normal; width: auto; }
+
+#config-block-footer input { float: right; margin-right: .3em; }
+#config-block-footer input.emphasis { font-weight: bold; border-color: #333; }
+#config-block-footer #course-config-prev { display: none; }
+#close-course-config { background-color: #fff; border: 4px solid #999; border-radius: 3px; position: absolute; right: 1em; top: 1em;}
+
+</style>
+
+<div id="course-config-block">
+<form action="" method="post" name="create-course-form" novalidate="novalidate">
+    <ul class="tabs">
+        <li class="selected"><a href="#course-details">Course Details</a></li>
+        <li><a href="#page-features">Course Page Features<a/></li>
+        <li><a href="#roster-permissions">Edit Roster/Assign Permissions</a></li>
+    </ul>
+    <div id="course-details">
+        <p class="description">Fill in the basic details of your course. The Start Date and End Dates will be automatically populated when you select a Term, but they may be manually overridden.</p>
+        <label for="course-code">Course Code</label>
+        <input type="text" id="course-code" name="course-code" maxlength="10" placeholder="ENGR 101" autofocus="autofocus" required="required" />
+
+        <label for="course-title">Course Title</label>
+        <input type="text" id="course-title" name="course-title" maxlength="255" placeholder="Intro to Engineering" required="required" />
+
+        <label for="course-location">Location</label>
+        <input type="text" id="course-location" name="course-location" maxlength="100" placeholder="Gates 123" required />
+
+        <label for="meeting-times">Meeting Times</label>
+        <textarea id="meeting-times" name="meeting-times" placeholder="MWF 8:00a - 9:15a"></textarea>
+
+        <label for="course-description">Course Description</label>
+        <textarea id="course-description" name="course-description" placeholder="This course will ..."></textarea>
+
+        <label for="course-email">Staff Email</label>
+        <input type="email" id="course-email" name="course-email" maxlength="100" placeholder="engr101-staff@stanford.edu" required />
+
+        <fieldset>
+        <label for="term">Term</label>
+        <select id="term" name="term">
+            <option>Fall</option>
+            <option>Winter</option>
+            <option>Spring</option>
+            <option>Summer</option>
+        </select>
+
+        <label for="start-date">Start Date</label>
+        <input type="text" id="start-date" name="start-date" />
+
+        <label for="end-date">End Date</label>
+        <input type="text" id="end-date" name="end-date" />
+        </fieldset>
+
+    </div>
+
+    <div id="page-features">
+        <p class="description"><strong>Make these features visible on home page</strong> 
+        <em>(N.B. Unchecking all effectively resets all features to visible)</em></p>
+        <ul class="feature-list">
+            <li>
+                <input type="checkbox" name="feature[]" id="feature-assignments" value="Assignments" checked="checked" />
+                <label for="feature-assignments">Assignments</label>
+                <span>Repository for all course assignments, quizzes, gradebook</span>
+            </li>
+            <li>
+                <input type="checkbox" name="feature[]" id="feature-discussion" value="Discussion" checked="checked" />
+                <label for="feature-discussion">Discussion</label>
+                <span>Provides a discussion forum for interaction with students and instructors</span>
+                <span class="additional-check">
+                    <input type="checkbox" id="forum-notify" name="forum-notify" checked="checked" />
+                    <label for="forum-notify">Send posting notifications to the course staff email specified above</label>
+                </span>
+            </li>
+            <li>
+                <input type="checkbox" name="feature[]" id="feature-lectures" value="Lectures" checked="checked" />
+                <label for="feature-lectures">Lectures</label>
+                <span>Lecture entries with descriptions and supporting files (presentation slides, additional handouts, etc.)</span>
+            </li>
+            <li>
+                <input type="checkbox" name="feature[]" id="feature-interactive-modules" value="Interactive Modules" />
+                <label for="feature-interactive-modules">Interactive Modules</label>
+                <span>Allows you to serve your content as modules. Each module consists of some content (text, file attachments, or video) in addition to exercises the student must solve</span>
+            </li>
+            <li>
+                <input type="checkbox" name="feature[]" id="feature-sections" value="Sections" checked="checked" />
+                <label for="feature-sections">Sections</label>
+                <span>Information related to TA-led student groups/labs</span>
+            </li>
+            <li>
+                <input type="checkbox" name="feature[]" id="feature-videos" value="Videos" checked="checked" />
+                <label for="feature-videos">Videos</label>
+                <span>Repository for video uploads</span>
+            </li>
+            <li>
+                <input type="checkbox" name="feature[]" id="feature-more" value="More" checked="checked" />
+                <label for="feature-more">More</label>
+                <span>Upload files, course handouts, or other resources</span>
+            </li>
+        </ul>
+    </div>
+
+    <div id="roster-permissions">
+        <h3>Course Membership</h3>
+        <input type="radio" name="course-membership" id="open" value="open" checked="checked" />
+        <label for="open">Open -- Any student may join without approval. Students can still be removed later on</label><br /> 
+
+        <input type="radio" name="course-membership" id="closed" value="closed" />
+        <label for="closed">Closed -- Students must be invited or must request membership</label>
+
+        <h3>Default Content Visibility</h3> 
+        <select>
+            <option>Just Me</option>
+            <option selected="selected">Course Staff</option>
+            <option>Course Members</option>
+            <option>Logged In</option>
+            <option>Everyone</option>
+        </select>
+
+        <h3>Manage Members</h3>
+        <table id="course-roster" class="tablesorter">
+            <thead>
+                <tr>
+                <th>Avatar</th>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Role</th>
+                <th>Section</th>
+                <th>View Grades</th>
+                <th>Remove From Course</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td><img src="http://www.gravatar.com/avatar/?d=mm&s=24" /></td>
+                <td>samplestudent</td>
+                <td>Sample</td>
+                <td>Student</td>
+                <td>
+                    <select>
+                        <option>Student</option>
+                        <option>TA</option>
+                        <option>Instructor</option>
+                    </select>
+                </td>
+                <td>Group 5</td>
+                <td>View Grades</td>
+                <td>Remove</td>
+                </tr>
+                <tr>
+                <td><img src="http://www.gravatar.com/avatar/?d=mm&s=24" /></td>
+                <td>sampleinstructor</td>
+                <td>Sample</td>
+                <td>Instructor</td>
+                <td>
+                    <select>
+                        <option>Student</option>
+                        <option>TA</option>
+                        <option selected="selected">Instructor</option>
+                    </select>
+                </td>
+                <td>Group 5</td>
+                <td>View Grades</td>
+                <td>Remove</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="config-block-footer">
+        <input type="button" name="course-config-next" id="course-config-next" value="Next" title="Proceed to next step" />
+        <input type="submit" name="course-config-quicksave" id="course-config-quicksave" class="emphasis" value="Quick Save" title="Save Course Info with Defaults" />
+        <input type="button" name="course-config-prev" id="course-config-prev" value="Previous" title="Return to previous step" />
+    </div>
+</form>
+</div>
+<script>
+$(function() { 
+    // load this section into the CWLite JS namespace
+    if (CWLite && CWLite.Course && !CWLite.Course.Creation) {
+        CWLite.Course.Creation = function () {
+            return {
+                tabCount: $('#course-config-block').find('ul.tabs').children().length,
+
+                currentTabIndex: -1, 
+
+                init: function () {
+
+                    // initialize tabs plugin + add tab selection handler
+                    CWLite.Course.Creation.tabsPlugin = $('#course-config-block').tabs({ 
+                        select: CWLite.Course.Creation.handleTabSelect, 
+                        show: CWLite.Course.Creation.handleTabShow
+                    });
+
+                    // add close button
+                    $('#course-config-block').append('<span id="close-course-config" class="ui-icon ui-icon-circle-close">.</span>');
+                    // add handler to close button
+                    $('#close-course-config').click(function () { $(this).parent().fadeOut('slow'); });
+
+                    // init button plugin for buttons within the form
+                    $('input:button, input:submit').button();
+                    $('#course-config-next').click(function () {
+                        CWLite.Course.Creation.tabsPlugin.tabs('select', CWLite.Course.Creation.currentTabIndex + 1);
+                    });
+                    $('#course-config-prev').click(function () {
+                        CWLite.Course.Creation.tabsPlugin.tabs('select', CWLite.Course.Creation.currentTabIndex - 1);
+                    });
+
+                    // init datepicker plugin for date fields
+                    $('#start-date').datepicker(); 
+                    $('#end-date').datepicker(); 
+
+                    // init discussion notification checkbox interaction
+                    $('#feature-discussion:checked').siblings('span.additional-check').fadeIn('slow');
+
+                    // add click handler
+                    $('#feature-discussion').click(function () {
+                        if (this.checked) {
+                            if($('span.additional-check').filter(':hidden')) {
+                                $('span.additional-check').fadeIn();
+                            }
+                        } else {
+                            $('#forum-notify').get(0).checked = false;
+                            $('span.additional-check').fadeOut();
+                        }
+                    });
+
+                    // init tablesorter plugin for member table
+                    $('#course-roster').tablesorter();
+                
+                },
+
+                handleTabSelect: function (event, ui) {
+
+                    var fieldsObj = {};
+                    fieldsObj.fields = [];
+
+                    if (ui.index > 0) {
+
+                        var fieldIds = [
+                            'course-code',
+                            'course-title',
+                            'course-location',
+                            'meeting-times',
+                            'course-description',
+                            'course-email',
+                            'term',
+                            'start-date',
+                            'end-date'
+                        ]; 
+
+                        for (var i = 0; i < fieldIds.length; i+=1) {
+
+                            var tmpObj = {};
+                            tmpObj.fieldId = fieldIds[i];
+                            tmpObj.criteria = 'NONEMPTY';
+
+                            fieldsObj.fields[fieldsObj.fields.length] = tmpObj;
+                        } 
+
+                        return CWLite.Course.Creation.validateForm(fieldsObj);
+
+                    } 
+
+                },
+
+                handleTabShow: function (event, ui) {
+
+                    CWLite.Course.Creation.currentTabIndex = ui.index;
+
+                    if (ui.index > 0) {
+                        $('#course-config-prev').show();
+                    } else {
+                        $('#course-config-prev').hide();
+                    }
+
+                    if (ui.index >= (CWLite.Course.Creation.tabCount - 1)) {
+                        $('#course-config-next').hide();
+                    } else {
+                        $('#course-config-next').show();
+                    }
+                },
+
+                validateForm: function (formFieldCollection) {
+                    /*
+                    formFieldCollection should be an object with a fields array,
+                    containing simple objects. Eventually the criteria property will
+                    consist of multiple checks that you can add for specific data
+                    validation.
+                    {
+                        fields: [
+                            { fieldId:'', criteria:'NONEMPTY'},
+                            { fieldId:'', criteria:'NONEMPTY'}
+                        ]
+                    }
+                    */
+                    var isValid = false; 
+
+                    if (formFieldCollection && formFieldCollection.fields) {
+                        var fFields = formFieldCollection.fields;
+                        for (var f = 0; f < fFields.length; f+=1) {
+                            if (fFields[f].criteria === 'NONEMPTY' && $('#' + fFields[f].fieldId).val() !== '') {
+                                isValid = true;
+                            } else {
+                                isValid = false;
+                                CWLite.displayUserMessage('info', 'You must fill out all fields before you can proceed');
+                                break;
+                            }
+                        }
+                    }
+
+                    return isValid;
+                
+                }
+            };
+        }();   // end of namespace definition 
+    }
+
+    // initialize the tabs, etc.
+    CWLite.Course.Creation.init();
+
+});     // end jQuery call when DOM loads
+</script>

@@ -1,0 +1,35 @@
+::selection { background: #def; }
+a { border-bottom: none; }
+
+#container { margin: 0; padding: 0; }
+
+#container header { background: #900; box-shadow: 0px 5px 8px #888; float: left; position: relative; width: 100%; }
+
+#container header h1 { background: transparent; color: #fff; float: left; padding-left: .3em; }
+#container header a { color: #fff; }
+#container header a:hover { text-decoration: underline; }
+
+#top-bar { bottom: 0; float: left; font-size: 125%; font-weight: 550; position: absolute; right: 0; width: 75%; }
+#top-bar ul { float: right; margin: 0; padding: 0; }
+#top-bar ul li { border-radius: 3px; float: left; list-style-type: none; margin: 0 1em 0 0; padding: 0 .3em; position: relative; }
+
+#top-bar a.dropdown-trigger { }
+#top-bar li.dropdown-exposed { background-color: #700; }
+
+#top-bar ul.dropdown-menu { background: rgba(10, 10, 10, .5); border-radius: 3px; border-top-left-radius: 0px; border-top-right-radius: 0px; box-shadow: 5px 5px 5px #ccc; color: #fff; display: none; /*margin-left: -.3em;*/ position: absolute; right: 0; min-width: 9em; z-index: 100; }
+#top-bar ul.dropdown-menu li { margin: 0 .3em; } 
+
+#top-bar ul#login-menu { box-shadow: -5px 5px 5px #ccc; right: 0; width: 26em; }
+#top-bar ul#login-menu li { margin: 0 0 0 1em; }
+
+#main #intro p { color: #555; font-style: italic; margin: 0; padding-left: 1em; }
+
+section { width: auto; }
+#contextual-help-container { clear: none; float: left; height: 1em; width: 60%; }
+#contextual-help-content { color: #900; float: left; /*margin-bottom: .5em;*/ text-align: center; width: 100%; }
+
+#cwlite-message { clear: both; display: none; padding: .5em 1em; }
+#cwlite-message p { margin: .3em; }
+#cwlite-message p .ui-icon { float: left; margin-right: .3em; }
+
+#create-container { width: 100%; }
